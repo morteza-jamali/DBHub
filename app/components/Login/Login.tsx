@@ -1,15 +1,18 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { PrimaryButton } from '@fluentui/react';
+import { Stack } from '@fluentui/react';
+import { styles, classes } from './Login.style';
 import routes from '../../constants/routes.json';
-import styles from './Login.sass';
 
 export default function Login(): JSX.Element {
   return (
-    <div>
-      <h2>Changed </h2>
-      <PrimaryButton text="Primary" />
-      <Link to={routes.COUNTER}>to Counter</Link>
-    </div>
+    <Stack
+      className={classes.firstStack}
+      verticalAlign="center"
+      horizontalAlign="center"
+    >
+      <Stack styles={styles} className={classes.loginStack}>
+        <span>Please sign in to your account</span>
+      </Stack>
+    </Stack>
   );
 }
