@@ -1,6 +1,6 @@
 {
-  "WELCOME": "/",
+  "LOGO": "/",
+  "WELCOME": "/welcome",
   "LOGIN": "/login",
-  "HOME": "/home",
-  "COUNTER": "/counter"
+  "HOME": "/home"
 }

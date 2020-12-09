@@ -1,25 +1,24 @@
-import GitHub from 'github-api';
-import { useHistory } from 'react-router-dom';
-import routes from '../constants/routes.json';
-const exec = require('child_process').exec;
-const commandExists = require('command-exists');
+import axios from 'axios';
+import ghconf from '../constants/github.config.json';
 
 export default class Github {
-  exec: any;
-  history: any;
+  async getUserVerificationData() {
+    let data: any;
 
-  constructor() {
-    this.exec = exec;
-    this.history = useHistory();
-  }
-
-  checkCLIInstalled() {
-    commandExists('gh', (err: any, commandExists: any) => {
-      if(commandExists) {
-        this.history.push(routes.HOME);
-      } else {
-        this.history.push(routes.LOGIN)
-      }
+    await axios
+    .post(ghconf.URL.VERIFICATION_DATA, {
+      client_id: ghconf.APP.CLIENT_ID,
+      scope: ghconf.APP.SCOPE
+    },{
+      headers: { 'Accept': 'application/json' }
+    })
+    .then((response) => {
+      data = response;
+    })
+    .catch((error) => {
+      console.error(error);
     });
+
+    return data;
   }
 }

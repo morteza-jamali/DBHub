@@ -11,10 +11,11 @@
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 import path from 'path';
-import { app, BrowserWindow } from 'electron';
+import { app, BrowserWindow} from 'electron';
 import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
 import MenuBuilder from './menu';
+import routes from './constants/routes.json';
 
 export default class AppUpdater {
   constructor() {
@@ -23,6 +24,13 @@ export default class AppUpdater {
     autoUpdater.checkForUpdatesAndNotify();
   }
 }
+
+/**
+ * Managing connection between Main and Render process
+ *//*
+ipcMain.on('asynchronous-message', (event, arg) => {
+  event.reply('asynchronous-reply', arg);
+});*/
 
 let mainWindow: BrowserWindow | null = null;
 
@@ -68,9 +76,13 @@ const createWindow = async () => {
   };
 
   mainWindow = new BrowserWindow({
+    center: true,
+    backgroundColor: '#323130',
+    resizable: false,
+    frame: false,
     show: false,
-    width: 1024,
-    height: 728,
+    width: 300,
+    height: 300,
     icon: getAssetPath('icon.png'),
     webPreferences:
       (process.env.NODE_ENV === 'development' ||
@@ -88,6 +100,7 @@ const createWindow = async () => {
 
   // @TODO: Use 'ready-to-show' event
   //        https://github.com/electron/electron/blob/master/docs/api/browser-window.md#using-ready-to-show-event
+  let logo_window_showed: boolean = false;
   mainWindow.webContents.on('did-finish-load', () => {
     if (!mainWindow) {
       throw new Error('"mainWindow" is not defined');
@@ -97,6 +110,18 @@ const createWindow = async () => {
     } else {
       mainWindow.show();
       mainWindow.focus();
+    }
+
+    if (!logo_window_showed) {
+      setTimeout(() => {
+        if (mainWindow !== null) {
+          logo_window_showed = !logo_window_showed;
+          mainWindow.setSize(1024, 728);
+          mainWindow.center();
+          mainWindow.setResizable(true);
+          mainWindow.webContents.send('changeRoute', routes.WELCOME)
+        }
+      }, 6000);
     }
   });
 

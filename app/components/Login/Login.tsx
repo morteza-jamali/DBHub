@@ -1,17 +1,19 @@
 import React from 'react';
-import { Stack } from '@fluentui/react';
-import { styles, classes } from './Login.style';
-import routes from '../../constants/routes.json';
+import { Stack, DefaultButton, IIconProps } from '@fluentui/react';
+import { LOGIN_PAGE, LOGIN_STACK } from './Login.style';
+
+const github_icon: IIconProps = { iconName: 'Volume0' };
 
 export default function Login(): JSX.Element {
   return (
-    <Stack
-      className={classes.firstStack}
-      verticalAlign="center"
-      horizontalAlign="center"
-    >
-      <Stack styles={styles} className={classes.loginStack}>
-        <span>Please sign in to your account</span>
+    <Stack styles={LOGIN_PAGE} verticalAlign="center" horizontalAlign="center">
+      <Stack
+        styles={LOGIN_STACK}
+        verticalAlign="center"
+        horizontalAlign="center"
+      >
+        <h4>Sign In</h4>
+        <DefaultButton toggle text="GitHub" iconProps={github_icon} />
       </Stack>
     </Stack>
   );
