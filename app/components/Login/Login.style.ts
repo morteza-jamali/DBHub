@@ -17,3 +17,9 @@ export const LOGIN_STACK: IStackStyles = {
     backgroundColor: DefaultPalette.white,
   },
 };
+
+export const BUTTONS: IStackStyles = {
+  root: {
+    direction: 'rtl'
+  }
+};

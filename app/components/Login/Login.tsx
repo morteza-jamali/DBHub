@@ -1,8 +1,11 @@
 import React from 'react';
-import { Stack, DefaultButton, IIconProps } from '@fluentui/react';
-import { LOGIN_PAGE, LOGIN_STACK } from './Login.style';
+import { Stack, DefaultButton } from '@fluentui/react';
+import { ipcRenderer } from 'electron';
+import { LOGIN_PAGE, LOGIN_STACK, BUTTONS } from './Login.style';
 
-const github_icon: IIconProps = { iconName: 'Volume0' };
+function githubAuth() {
+  ipcRenderer.send('githubAuthenticate', '');
+}
 
 export default function Login(): JSX.Element {
   return (
@@ -13,7 +16,9 @@ export default function Login(): JSX.Element {
         horizontalAlign="center"
       >
         <h4>Sign In</h4>
-        <DefaultButton toggle text="GitHub" iconProps={github_icon} />
+        <DefaultButton text="GitHub" styles={BUTTONS} onClick={githubAuth}>
+          <i className="mi mi-github mr-2"></i>
+        </DefaultButton>
       </Stack>
     </Stack>
   );

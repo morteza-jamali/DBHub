@@ -11,11 +11,15 @@
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 import path from 'path';
-import { app, BrowserWindow} from 'electron';
+import { app, BrowserWindow, ipcMain } from 'electron';
 import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
 import MenuBuilder from './menu';
 import routes from './constants/routes.json';
+import Github from './github/Github';
+import './modules/Server';
+import { LocalStorage } from './modules/StoreData';
+import appConfig from './constants/app.config.json';
 
 export default class AppUpdater {
   constructor() {
@@ -25,14 +29,9 @@ export default class AppUpdater {
   }
 }
 
-/**
- * Managing connection between Main and Render process
- *//*
-ipcMain.on('asynchronous-message', (event, arg) => {
-  event.reply('asynchronous-reply', arg);
-});*/
-
 let mainWindow: BrowserWindow | null = null;
+let github_storage: any = null;
+let github = new Github();
 
 if (process.env.NODE_ENV === 'production') {
   const sourceMapSupport = require('source-map-support');
@@ -81,8 +80,8 @@ const createWindow = async () => {
     resizable: false,
     frame: false,
     show: false,
-    width: 300,
-    height: 300,
+    width: 400,
+    height: 400,
     icon: getAssetPath('icon.png'),
     webPreferences:
       (process.env.NODE_ENV === 'development' ||
@@ -112,16 +111,36 @@ const createWindow = async () => {
       mainWindow.focus();
     }
 
+    github_storage = new LocalStorage(
+      mainWindow,
+      appConfig.STORAGE.SCOPE.GITHUB
+    );
+
     if (!logo_window_showed) {
-      setTimeout(() => {
-        if (mainWindow !== null) {
-          logo_window_showed = !logo_window_showed;
-          mainWindow.setSize(1024, 728);
-          mainWindow.center();
-          mainWindow.setResizable(true);
-          mainWindow.webContents.send('changeRoute', routes.WELCOME)
-        }
+      setTimeout(async () => {
+        logo_window_showed = !logo_window_showed;
+        let access_token = await github_storage.getItem(
+          appConfig.STORAGE.KEY.ACCESS_TOKEN
+        );
+        mainWindow?.setSize(1024, 728);
+        mainWindow?.center();
+        mainWindow?.setResizable(true);
+        mainWindow?.webContents.send('changeRoute', routes.WELCOME);
       }, 6000);
+    }
+  });
+
+  mainWindow.webContents.on('will-navigate', async (event: any, url: any) => {
+    if (url.includes('localhost') && url.includes('app=github')) {
+      let access_token: any = await github.getAccessToken(url);
+      if (!access_token) {
+        console.log('Github authentication failed !');
+      } else {
+        await github_storage.setItem(appConfig.STORAGE.KEY.ACCESS_TOKEN, {
+          access_token,
+          login: true,
+        });
+      }
     }
   });
 
@@ -136,6 +155,13 @@ const createWindow = async () => {
   // eslint-disable-next-line
   new AppUpdater();
 };
+
+/**
+ * Managing connection between Main and Render process
+ */
+ipcMain.on('githubAuthenticate', (event: any, arg: any) => {
+  mainWindow?.loadURL(github.getAuthURL());
+});
 
 /**
  * Add event listeners...
