@@ -11,7 +11,7 @@
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 import path from 'path';
-import { app, BrowserWindow, ipcMain } from 'electron';
+import { app, BrowserWindow, ipcMain, screen } from 'electron';
 import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
 import MenuBuilder from './menu';
@@ -77,11 +77,15 @@ const createWindow = async () => {
   mainWindow = new BrowserWindow({
     center: true,
     backgroundColor: '#323130',
-    resizable: false,
+    resizable: true,
     frame: false,
     show: false,
     width: 400,
     height: 400,
+    minHeight: 400,
+    minWidth: 400,
+    maxHeight: 400,
+    maxWidth: 400,
     icon: getAssetPath('icon.png'),
     webPreferences:
       (process.env.NODE_ENV === 'development' ||
@@ -122,9 +126,10 @@ const createWindow = async () => {
         let access_token = await github_storage.getItem(
           appConfig.STORAGE.KEY.ACCESS_TOKEN
         );
+        const { width, height } = screen.getPrimaryDisplay().workAreaSize;
+        mainWindow?.setMaximumSize(width, height);
         mainWindow?.setSize(1024, 728);
         mainWindow?.center();
-        mainWindow?.setResizable(true);
         mainWindow?.webContents.send('changeRoute', routes.WELCOME);
       }, 6000);
     }

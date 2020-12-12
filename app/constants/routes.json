@@ -2,5 +2,6 @@
   "LOGO": "/",
   "WELCOME": "/welcome",
   "LOGIN": "/login",
-  "HOME": "/home"
+  "HOME": "/home",
+  "REPOSITORY": "/repository"
 }
