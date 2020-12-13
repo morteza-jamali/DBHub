@@ -1,14 +1,16 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import { _window, _app } from '../../modules/Main';
+import { _window, _app, openURL } from '../../modules/Main';
 import { CommandBar, ICommandBarItemProps } from '@fluentui/react';
 import {
   COMMAND_BAR,
   ICON,
   COMMAND_BUTTON,
   CLOSE_BUTTON,
+  APP_ICON,
 } from './TitleBar.style';
 import routes from '../../constants/routes.json';
+import packageJSON from '../../../package.json';
 
 const _farItems: ICommandBarItemProps[] = [
   {
@@ -49,6 +51,11 @@ export default function TitleBar(): JSX.Element {
 
   const _items: ICommandBarItemProps[] = [
     {
+      key: 'appIcon',
+      cacheKey: 'appIconCacheKey',
+      buttonStyles: APP_ICON,
+    },
+    {
       key: 'fileItem',
       text: 'File',
       cacheKey: 'fileItemCacheKey',
@@ -84,6 +91,55 @@ export default function TitleBar(): JSX.Element {
       text: 'Help',
       cacheKey: 'helpItemCacheKey',
       buttonStyles: COMMAND_BUTTON,
+      subMenuProps: {
+        items: [
+          {
+            key: 'welcome',
+            text: 'Welcome',
+            onClick: () => {
+              history.push(routes.WELCOME);
+            },
+          },
+          {
+            key: 'documentation',
+            text: 'Documentation',
+          },
+          {
+            key: 'releaseNotes',
+            text: 'Release Notes',
+          },
+          {
+            key: 'keyboardShortcuts',
+            text: 'Keyboard Shortcuts Reference',
+          },
+          {
+            key: 'reportIssue',
+            text: 'Report Issue',
+          },
+          {
+            key: 'viewLicense',
+            text: 'View License',
+            onClick: () => {
+              openURL(`${packageJSON.repository.url}/blob/master/LICENSE`);
+            },
+          },
+          {
+            key: 'developerTools',
+            text: 'Toggle Developer Tools',
+            onClick: () => {
+              _window().toggleDevTools();
+            },
+          },
+          {
+            key: 'checkForUpdate',
+            text: 'Check for Update',
+          },
+          {
+            key: 'about',
+            text: 'About',
+          },
+        ],
+      },
     },
   ];
 

@@ -1,4 +1,4 @@
-import { remote } from 'electron';
+import { remote, shell } from 'electron';
 import path from 'path';
 
 export const _window = (): any => {
@@ -15,4 +15,8 @@ export const RESOURCES_PATH = _app().isPackaged
 
 export const getAssetPath = (...paths: string[]): string => {
   return path.join(RESOURCES_PATH, ...paths);
+};
+
+export const openURL = (url: string) => {
+  shell.openExternal(url);
 };
