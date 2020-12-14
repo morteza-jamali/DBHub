@@ -9,7 +9,6 @@ import HomePage from './containers/HomePage';
 import LoginPage from './containers/LoginPage';
 import WelcomePage from './containers/WelcomePage';
 import LogoPage from './containers/LogoPage';
-import RepositoryPage from './containers/RepositoryPage';
 
 initializeIcons();
 
@@ -26,7 +25,6 @@ export default function Routes() {
         <Route path={routes.LOGIN} component={LoginPage} />
         <Route path={routes.WELCOME} component={WelcomePage} />
         <Route path={routes.LOGO} component={LogoPage} />
-        <Route path={routes.REPOSITORY} component={RepositoryPage} />
       </Switch>
     </App>
   );

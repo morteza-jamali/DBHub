@@ -66,7 +66,7 @@ export default function TitleBar(): JSX.Element {
             key: 'newRepository',
             text: 'New Repository',
             onClick: () => {
-              history.push(`${routes.HOME}/repository`);
+              history.push(`${routes.HOME}${routes.REPOSITORY}`);
             },
           },
           {
@@ -76,6 +76,13 @@ export default function TitleBar(): JSX.Element {
           {
             key: 'newTable',
             text: 'New Table',
+          },
+          {
+            key: 'editor',
+            text: 'Editor',
+            onClick: () => {
+              history.push(`${routes.HOME}${routes.EDITOR}`);
+            },
           },
         ],
       },

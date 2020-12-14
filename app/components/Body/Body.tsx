@@ -1,10 +1,12 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
+import Editor from '../Editor/Editor';
 import Repository from '../Repository/Repository';
 import { upperCaseFirstLetter } from '../../modules/Strings';
 
 const BODY_COMPONENTS: any = {
   Repository,
+  Editor,
 };
 
 function _Body(): JSX.Element {

@@ -3,5 +3,6 @@
   "WELCOME": "/welcome",
   "LOGIN": "/login",
   "HOME": "/home",
-  "REPOSITORY": "/repository"
+  "REPOSITORY": "/repository",
+  "EDITOR": "/editor"
 }
