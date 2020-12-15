@@ -3,8 +3,11 @@ import {
   DefaultPalette,
   IIconStyles,
   IButtonStyles,
+  getTheme,
 } from '@fluentui/react';
-import { NeutralColors, FontSizes } from '@fluentui/theme';
+import { FontSizes } from '@fluentui/theme';
+
+const theme: any = getTheme();
 
 export const COMMAND_BAR: IStackStyles = {
   root: {
@@ -20,30 +23,31 @@ export const COMMAND_BUTTON: IButtonStyles = {
   root: {
     backgroundColor: 'transparent',
     '-webkit-app-region': 'no-drag',
+    color: theme.palette.neutralLighter,
   },
   menuIcon: {
     display: 'none !important',
   },
   rootHovered: {
-    backgroundColor: NeutralColors.gray50,
-    color: DefaultPalette.black,
+    backgroundColor: theme.palette.themeLight,
+    color: theme.palette.neutralLighter,
   },
   rootPressed: {
-    backgroundColor: NeutralColors.gray50,
-    color: DefaultPalette.black,
+    backgroundColor: theme.palette.themeLight,
+    color: theme.palette.neutralLighter,
   },
   iconHovered: {
-    color: DefaultPalette.black,
+    color: theme.palette.neutralLighter,
   },
   iconPressed: {
-    color: DefaultPalette.black,
+    color: theme.palette.neutralLighter,
   },
 };
 
 export const ICON: IIconStyles = {
   root: {
     fontSize: FontSizes.size10,
-    color: DefaultPalette.black,
+    color: theme.palette.neutralLighter,
   },
 };
 

@@ -1,9 +1,11 @@
-import { NeutralColors, FontSizes } from '@fluentui/theme';
-import { INavStyles, IIconStyles } from '@fluentui/react';
+import { FontSizes } from '@fluentui/theme';
+import { INavStyles, IIconStyles, getTheme } from '@fluentui/react';
+
+const theme: any = getTheme();
 
 export const SIDENAV: Partial<INavStyles> = {
   root: {
-    backgroundColor: NeutralColors.gray40,
+    backgroundColor: theme.palette.themeDark,
     height: '100%',
   },
   link: {
@@ -26,6 +28,6 @@ export const ICON: IIconStyles = {
   root: {
     fontSize: FontSizes.xxLarge,
     margin: 'auto',
-    color: NeutralColors.black,
+    color: theme.palette.neutralLighter,
   },
 };

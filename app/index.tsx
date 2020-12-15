@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import { render } from 'react-dom';
 import { AppContainer as ReactHotAppContainer } from 'react-hot-loader';
 import { history, configuredStore } from './store';
+import Theme from './modules/Theme';
 import './app.global.sass';
 
 const store = configuredStore();
@@ -18,3 +19,5 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('root')
   );
 });
+
+Theme();
