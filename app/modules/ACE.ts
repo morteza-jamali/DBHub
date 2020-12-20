@@ -14,6 +14,7 @@ export default class ACE {
     this.editor = element ? Ace.edit(element) : undefined;
     'theme' in config ? this.setTheme(config.theme) : undefined;
     'mode' in config ? this.setMode(config.mode) : undefined;
+    'showPrintMargin' in config ? this.editor.setShowPrintMargin(config.showPrintMargin) : undefined;
   }
 
   setTheme(theme: string) {

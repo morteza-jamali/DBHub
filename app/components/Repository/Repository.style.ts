@@ -5,16 +5,17 @@ import {
   ITextFieldStyles,
   IButtonStyles,
   ISeparatorStyles,
+  IStackStyles,
 } from '@fluentui/react';
 
-export const STACK: IStackItemStyles = {
+export const STACK: IStackStyles = {
   root: {
     width: '100%',
     paddingTop: '20px',
   },
 };
 
-export const CONTAINER: IStackItemStyles = {
+export const CONTAINER: IStackStyles = {
   root: {
     width: '100%',
     height: '100%',

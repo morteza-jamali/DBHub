@@ -1,22 +1,32 @@
-import React, { useEffect } from 'react';
-import ACE from '../../modules/ACE';
-import { EDITOR } from './Editor.style';
+import { useEffect } from 'react';
+import { Stack } from '@fluentui/react';
+import SideNav from '../SideNav/SideNav';
+import { CONTAINER, EDITOR } from './Editor.style';
 
 const editorConfig: any = {
-  theme: 'monokai',
+  theme: 'vscodeDark',
   mode: 'javascript',
+  showPrintMargin: false,
 };
-let editor = new ACE('[data-role="editor"]');
+
+function initEditor() {
+  let editor = new ACE('[data-role="editor"]');
+  editor.init(editorConfig);
+}
 
 export default function Editor(): JSX.Element {
-  useEffect(() => editor.init(editorConfig));
+  useEffect(() => initEditor());
 
   return (
-    <div data-role="editor" style={EDITOR}>
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Facilis ipsum
-      aperiam, maxime, amet placeat hic rem unde, quisquam deleniti excepturi
-      impedit laborum fugiat officiis! Mollitia quae cum obcaecati perferendis.
-      Nobis.
-    </div>
+    <Stack styles={CONTAINER} horizontal>
+      <Stack.Item className="sideNav">
+        <SideNav />
+      </Stack.Item>
+      <Stack.Item grow>
+        <div data-role="editor" style={EDITOR}>
+          SELECT * FROM tbl_name
+        </div>
+      </Stack.Item>
+    </Stack>
   );
 }

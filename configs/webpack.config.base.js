@@ -46,5 +46,9 @@ export default {
     new webpack.EnvironmentPlugin({
       NODE_ENV: 'production',
     }),
+    new webpack.ProvidePlugin({
+      React: 'react',
+      ACE: [path.resolve(__dirname, '../app/modules/ACE'), 'default'],
+    }),
   ],
 };
