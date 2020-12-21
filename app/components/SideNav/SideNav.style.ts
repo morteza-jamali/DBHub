@@ -1,7 +1,21 @@
 import { FontSizes } from '@fluentui/theme';
-import { INavStyles, IIconStyles, getTheme } from '@fluentui/react';
+import {
+  INavStyles,
+  IIconStyles,
+  IStackStyles,
+  getTheme,
+} from '@fluentui/react';
 
 const theme: any = getTheme();
+
+export const STACK: IStackStyles = {
+  root: {
+    maxWidth: '250px',
+    height: '100%',
+    backgroundColor: 'rgb(37, 37, 38)',
+    color: theme.palette.neutralLighter,
+  },
+};
 
 export const SIDENAV: Partial<INavStyles> = {
   root: {

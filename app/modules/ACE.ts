@@ -1,4 +1,6 @@
 import Ace from 'ace-builds/src-noconflict/ace';
+import url from 'url';
+import path from 'path';
 
 export default class ACE {
   editor: any;
@@ -6,6 +8,10 @@ export default class ACE {
 
   constructor(selector: string) {
     Ace.config.set('basePath', '../node_modules/ace-builds/src-noconflict');
+    Ace.config.setModuleUrl(
+      'ace/theme/vscodeDark',
+      url.pathToFileURL(path.resolve(__dirname, '../app/themes/vscodeDark.js'))
+    );
     this.selector = selector;
   }
 
@@ -14,7 +20,9 @@ export default class ACE {
     this.editor = element ? Ace.edit(element) : undefined;
     'theme' in config ? this.setTheme(config.theme) : undefined;
     'mode' in config ? this.setMode(config.mode) : undefined;
-    'showPrintMargin' in config ? this.editor.setShowPrintMargin(config.showPrintMargin) : undefined;
+    'showPrintMargin' in config
+      ? this.editor.setShowPrintMargin(config.showPrintMargin)
+      : undefined;
   }
 
   setTheme(theme: string) {

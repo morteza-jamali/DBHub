@@ -19,3 +19,12 @@ body
 button, a, div
   &:focus
     outline: none !important
+.gutter.gutter-vertical
+  cursor: n-resize
+.xterm
+  padding: 15px 15px
+  &:hover .xterm-viewport
+    overflow-y: auto !important
+  .xterm-viewport
+    overflow-y: hidden !important
+    transition: all 0.3s
