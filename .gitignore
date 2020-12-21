@@ -59,3 +59,5 @@ npm-debug.log.*
 
 app/constants/github.config.json
 app/constants/app.config.json
+
+.vercel
