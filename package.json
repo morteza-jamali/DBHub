@@ -264,8 +264,6 @@
     "@now/build-utils": "^2.6.0",
     "@octokit/rest": "^18.0.12",
     "@reduxjs/toolkit": "^1.4.0",
-    "@vercel/build-utils": "^2.6.0",
-    "@vercel/node": "^1.8.5",
     "ace-builds": "^1.4.12",
     "axios": "^0.21.0",
     "connected-react-router": "^6.6.1",
