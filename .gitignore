@@ -55,5 +55,7 @@ npm-debug.log.*
 *.sass.d.ts
 *.scss.d.ts
 
+.vercel
+
 app/constants/github.config.json
 app/constants/app.config.json

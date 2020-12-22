@@ -1,1 +1,8 @@
-{}
+{
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "https://dbhub-ac.vercel.app"
+    }
+  ]
+}

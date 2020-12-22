@@ -2,5 +2,22 @@
   "dependencies": {
     "@vercel/build-utils": "^2.6.0",
     "@vercel/node": "^1.8.5"
-  }
+  },
+  "name": "vercel",
+  "version": "0.0.1",
+  "scripts": {},
+  "keywords": [
+    "DBHub",
+    "API",
+    "RESTful",
+    "Database",
+    "SQL"
+  ],
+  "author": {
+    "name": "Morteza Jamali",
+    "email": "mortezajamali4241@gmail.com",
+    "url": "https://morteza-jamali.github.io"
+  },
+  "license": "MIT",
+  "description": "DBHub RESTful API"
 }
