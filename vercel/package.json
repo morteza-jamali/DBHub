@@ -53,6 +53,9 @@
     "@loopback/rest": "^9.1.1",
     "@loopback/rest-explorer": "^3.0.5",
     "@loopback/service-proxy": "^3.0.5",
+    "@types/sql.js": "^1.0.3",
+    "axios": "^0.21.1",
+    "sql.js": "^1.4.0",
     "tslib": "^2.0.0"
   },
   "devDependencies": {
