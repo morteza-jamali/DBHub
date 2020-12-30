@@ -1,8 +1,8 @@
 {
-  "redirects": [
+  "routes": [
     {
-      "source": "/",
-      "destination": "https://dbhub-ac.vercel.app"
+      "src": "/api",
+      "dest": "/api/app.ts"
     }
   ]
 }
