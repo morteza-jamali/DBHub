@@ -7,9 +7,11 @@ export default (request: NowRequest, _response: NowResponse) => {
   let token: string;
 
   let isValid: boolean = new Validator(_response, body).validate({
-    push: 'depend:token|required',
+    push: 'depend:token',
     query: 'required',
     username: 'required',
+    repository: 'required',
+    database: 'required',
   });
 
   if (!isValid) {

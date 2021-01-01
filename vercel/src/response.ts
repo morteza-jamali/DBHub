@@ -22,4 +22,7 @@ export const templates: any = {
   isUndefined(key: string): string {
     return `${key} value is undefined`;
   },
+  dependOn(key: string, dest: string): string {
+    return `${key} depend on ${dest}`;
+  },
 };
