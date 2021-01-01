@@ -1,8 +1,18 @@
 {
   "routes": [
     {
-      "src": "/api",
-      "dest": "/api/app.ts"
+      "src": "/api/query",
+      "methods": [
+        "POST"
+      ],
+      "dest": "/api/query.ts"
+    },
+    {
+      "src": "/api/repo",
+      "methods": [
+        "POST"
+      ],
+      "dest": "/api/repository.ts"
     }
   ]
 }

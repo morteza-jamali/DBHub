@@ -7,3 +7,11 @@ export function isNull(variable: any, object: boolean = false): boolean {
 
   return object ? check0 || Object.keys(variable).length === 0 : check0;
 }
+
+export function getDatabasePath(
+  username: string,
+  repository: string,
+  database: string
+): string {
+  return `https://github.com/${username}/${repository}/raw/master/${database}.db`;
+}

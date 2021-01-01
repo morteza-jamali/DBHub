@@ -5,6 +5,7 @@
     "@vercel/node": "^1.8.5"
   },
   "dependencies": {
+    "@octokit/rest": "^18.0.12",
     "axios": "^0.21.1",
     "sql.js": "^1.4.0"
   }
