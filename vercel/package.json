@@ -8,5 +8,8 @@
     "@octokit/rest": "^18.0.12",
     "axios": "^0.21.1",
     "sql.js": "^1.4.0"
+  },
+  "org_dbhub": {
+    "api_version": "1.0"
   }
 }

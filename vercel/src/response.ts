@@ -5,6 +5,7 @@ export const ERROR: Number = 1;
 
 export interface IResponse {
   message: string;
+  data?: any;
 }
 
 export function response(
